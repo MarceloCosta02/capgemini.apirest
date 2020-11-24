@@ -12,7 +12,7 @@ namespace apirest.Validation
         /// <summary> 
         /// Verifica se os campos do Pet não é nulo
         /// </summary>
-        public virtual void PetIsNotNull(Pets pets)
+        public void PetIsNotNull(Pets pets)
         {
             if (pets.PetNumber.Equals(0))
                 throw new PetException("O numero do pet não pode ser 0");
@@ -27,7 +27,7 @@ namespace apirest.Validation
         /// <summary> 
         /// Popula a Model de Pet
         /// </summary>
-        public virtual IEnumerable<Pets> GeneratePetList()
+        public IEnumerable<Pets> GeneratePetList()
         {
             List<Pets> pet = new List<Pets>
             {
