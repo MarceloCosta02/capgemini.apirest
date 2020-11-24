@@ -32,6 +32,12 @@ namespace apirest.Services.Interfaces
         Pets Update(Pets pets);
 
         /// <summary> 
+        /// Modifica o Pet
+        /// </summary>
+        /// <param name="pets"></param>
+        Pets Modify(Pets pets);
+
+        /// <summary> 
         /// Deleta o Pet
         /// </summary>
         /// <param name="petNumber"></param>

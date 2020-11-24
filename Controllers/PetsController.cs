@@ -88,7 +88,7 @@ namespace apirest.Controllers
         {
             try
             {
-                return Ok(_petService.Update(pet));
+                return Ok(_petService.Modify(pet));
             }
             catch (PetException ex)
             {

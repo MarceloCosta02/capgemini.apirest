@@ -60,12 +60,24 @@ namespace apirest.Services
         }
 
         /// <summary> 
+        /// Modifica o Pet
+        /// </summary>
+        /// <param name="pets"></param>
+        public Pets Modify(Pets pets)
+        {
+            PetIsNotNull(pets);
+
+            Debug.WriteLine($"Pet {pets.Name} modificado com sucesso");
+            return new Pets(pets.PetNumber, pets.Name, pets.PetType, pets.Weight);
+        }
+
+        /// <summary> 
         /// Implementação do método que deleta o Pet
         /// </summary>
         /// <param name="petNumber"></param>
         public void Delete(int petNumber)
         {
             Debug.WriteLine($"Pet com id {petNumber} deletado com sucesso");
-        }                
+        }       
     }
 }
