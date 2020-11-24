@@ -35,8 +35,8 @@ namespace apirest.Controllers
         /// <summary>
         /// Lista o Pet por nome
         /// </summary>
-        [HttpGet("{name}")]
-        public IActionResult GetByName(string name)
+        [HttpGet("{find-by-name}")]
+        public IActionResult GetByName([FromQuery] string name)
         {
             try
             {
@@ -44,7 +44,7 @@ namespace apirest.Controllers
             }
             catch (PetException ex)
             {
-                return BadRequest(ex.Message);
+                return NotFound(ex.Message);
             }
         }
 
@@ -56,7 +56,7 @@ namespace apirest.Controllers
         {
             try
             {
-                return Ok(_petService.Create(pet));
+                return Created("", pet);
             }
             catch (PetException ex)
             {
@@ -100,7 +100,7 @@ namespace apirest.Controllers
         /// Deleta o Pet
         /// </summary>
         [HttpDelete("{id}")]
-        public IActionResult Delete(int petNumber)
+        public IActionResult Delete([FromQuery] int petNumber)
         {
             _petService.Delete(petNumber);
             return NoContent();
