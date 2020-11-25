@@ -15,13 +15,13 @@ namespace apirest.Validation
         public void PetIsNotNull(Pets pets)
         {
             if (pets.PetNumber.Equals(0))
-                throw new PetException("O numero do pet não pode ser 0");
+                throw new PetBadRequestException("O numero do pet não pode ser 0");
             else if (string.IsNullOrEmpty(pets.Name))
-                throw new PetException("O nome do pet está vazio");
+                throw new PetBadRequestException("O nome do pet está vazio");
             else if (string.IsNullOrEmpty(pets.PetType))
-                throw new PetException("O tipo do pet está vazio");
+                throw new PetBadRequestException("O tipo do pet está vazio");
             else if (pets.Weight.Equals(0))
-                throw new PetException("O peso do pet está vazio");
+                throw new PetBadRequestException("O peso do pet está vazio");
         }
 
         /// <summary> 

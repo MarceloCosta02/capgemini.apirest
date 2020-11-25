@@ -31,7 +31,7 @@ namespace apirest.Services
             var pet = GeneratePetList().Where(p => p.Name.Contains(name));
 
             if (!pet.Any())
-                throw new PetException($"Pet {name} não encontrado");
+                throw new PetNotFoundException($"Pet {name} não encontrado");
             else
                 return pet;
         }
