@@ -42,5 +42,11 @@ namespace apirest.Services.Interfaces
         /// </summary>
         /// <param name="petNumber"></param>
         void Delete(int petNumber);
+
+        /// <summary> 
+        /// Gera a lista de Pets
+        /// </summary>
+        /// <param name="petNumber"></param>
+        IEnumerable<Pets> GeneratePetList();
     }
 }

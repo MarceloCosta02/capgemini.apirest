@@ -78,6 +78,23 @@ namespace apirest.Services
         public void Delete(int petNumber)
         {
             Debug.WriteLine($"Pet com id {petNumber} deletado com sucesso");
-        }       
+        }
+
+        /// <summary> 
+        /// Popula a Model de Pet
+        /// </summary>
+        public IEnumerable<Pets> GeneratePetList()
+        {
+            List<Pets> pet = new List<Pets>
+            {
+                new Pets(1, "Pluto", "Dog", 5.4),
+                new Pets(2, "Pato Donald", "Duck", 10),
+                new Pets(3, "Mickey", "Mouse", 7.5),
+                new Pets(4, "Tom", "Cat", 3.1),
+                new Pets(5, "Jerry", "Mouse", 0.27)
+            };
+
+            return pet;
+        }
     }
 }

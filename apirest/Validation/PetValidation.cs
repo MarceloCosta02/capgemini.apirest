@@ -22,23 +22,6 @@ namespace apirest.Validation
                 throw new PetBadRequestException("O tipo do pet está vazio");
             else if (pets.Weight.Equals(0))
                 throw new PetBadRequestException("O peso do pet está vazio");
-        }
-
-        /// <summary> 
-        /// Popula a Model de Pet
-        /// </summary>
-        public IEnumerable<Pets> GeneratePetList()
-        {
-            List<Pets> pet = new List<Pets>
-            {
-                new Pets(1, "Pluto", "Dog", 5.4),
-                new Pets(2, "Pato Donald", "Duck", 10),
-                new Pets(3, "Mickey", "Mouse", 7.5),
-                new Pets(4, "Tom", "Cat", 3.1),
-                new Pets(5, "Jerry", "Mouse", 0.27)
-            };
-
-            return pet;
-        }
+        }       
     }
 }
