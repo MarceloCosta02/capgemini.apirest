@@ -6,6 +6,7 @@ using apirest.Exceptions;
 using apirest.Models;
 using apirest.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -13,7 +14,7 @@ namespace apirest.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class PetsController : ControllerBase
+    public class PetsController : BaseController
     {
         //Declaração do serviço usado
         private readonly IPetService _petService;
@@ -29,39 +30,28 @@ namespace apirest.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_petService.GetAll());
+            var result = _petService.GetAll();
+            return new ObjectResult(result) { StatusCode = StatusCodes.Status200OK };
         }
 
         /// <summary>
         /// Lista o Pet por nome
         /// </summary>
         [HttpGet("{find-by-name}")]
-        public IActionResult GetByName([FromQuery] string name)
+        public IActionResult GetByName([FromQuery] string name) => VerifyResult(() =>
         {
-            try
-            {
-                return Ok(_petService.GetByName(name));
-            }
-            catch (PetException ex)
-            {
-                return NotFound(ex.Message);
-            }
-        }
+            var result = _petService.GetByName(name);
+            return new ObjectResult(result) { StatusCode = StatusCodes.Status200OK };
+        });
 
         /// <summary>
         /// Insere o Pet
         /// </summary>
-        [HttpPost]     
+        [HttpPost]
         public IActionResult Post([FromBody] Pets pet)
         {
-            try
-            {
-                return Created("", pet);
-            }
-            catch (PetException ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            var result = _petService.Create(pet);
+            return new ObjectResult(result) { StatusCode = StatusCodes.Status201Created };
         }
 
         /// <summary>
@@ -70,14 +60,8 @@ namespace apirest.Controllers
         [HttpPut]
         public IActionResult Put([FromBody] Pets pet)
         {
-            try
-            {
-                return Ok(_petService.Update(pet));
-            }
-            catch (PetException ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            var result = _petService.Update(pet);
+            return new ObjectResult(result) { StatusCode = StatusCodes.Status200OK };
         }
 
         /// <summary>
@@ -86,14 +70,8 @@ namespace apirest.Controllers
         [HttpPatch]
         public IActionResult Patch([FromBody] Pets pet)
         {
-            try
-            {
-                return Ok(_petService.Modify(pet));
-            }
-            catch (PetException ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            var result = _petService.Modify(pet);
+            return new ObjectResult(result) { StatusCode = StatusCodes.Status200OK };
         }
 
         /// <summary>
